@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://f1j0bncyw4p1"]
+
+[ext_resource type="Script" uid="uid://cl0h0xttiiljn" path="res://canvas.gd" id="1_75aqd"]
+[ext_resource type="Texture2D" uid="uid://70nmjv3x4but" path="res://icon.svg" id="2_pfdkn"]
+[ext_resource type="Texture2D" uid="uid://bu1uirw7i8tn6" path="res://assets/tilemap_black.png" id="4_k4n84"]
+[ext_resource type="PackedScene" uid="uid://l1sdrk43g4cs" path="res://number_texture.tscn" id="4_uoc13"]
+[ext_resource type="PackedScene" uid="uid://c1jklhqwulyns" path="res://color_switcher.tscn" id="7_d11g6"]
+
+[sub_resource type="GDScript" id="GDScript_uoc13"]
+script/source = "class_name NumberToTex
+extends Node
+
+
+var atlas: AtlasTexture
+
+
+@export var dic: Dictionary[int, AtlasTexture]
+
+
+func number_to_image(number: int) -> Image:
+    # Convert the number to a string
+    return dic[number].get_image()"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjejc"]
+atlas = ExtResource("4_k4n84")
+region = Rect2(291, 155, 11, 11)
+
+[node name="Canvas" type="TextureRect" node_paths=PackedStringArray("color_switcher")]
+script = ExtResource("1_75aqd")
+godot_icon = ExtResource("2_pfdkn")
+num_texture_scene = ExtResource("4_uoc13")
+color_switcher = NodePath("ColorSwitcher")
+
+[node name="NumberToTex" type="Node" parent="."]
+script = SubResource("GDScript_uoc13")
+dic = Dictionary[int, AtlasTexture]({
+1: SubResource("AtlasTexture_rjejc")
+})
+
+[node name="ColorSwitcher" parent="." instance=ExtResource("7_d11g6")]
+
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

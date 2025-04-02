@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1jklhqwulyns"]
+
+[ext_resource type="Script" uid="uid://bf4hkwh0ocis7" path="res://color_switcher.gd" id="1_4ubo0"]
+[ext_resource type="PackedScene" uid="uid://bj6rob1dcv0jd" path="res://palette.tscn" id="1_58d8y"]
+
+[node name="ColorSwitcher" type="CanvasLayer" node_paths=PackedStringArray("palette")]
+script = ExtResource("1_4ubo0")
+palette = NodePath("Palette")
+
+[node name="Palette" parent="." instance=ExtResource("1_58d8y")]
+offset_top = -100.0
+offset_bottom = -100.0

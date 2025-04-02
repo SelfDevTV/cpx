@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://l1sdrk43g4cs"]
+
+[ext_resource type="Texture2D" uid="uid://cjmwucphe5ko8" path="res://assets/1.png" id="1_mtceg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a14vg"]
+blend_mode = 4
+
+[node name="NumberTexture" type="TextureRect"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_a14vg")
+custom_minimum_size = Vector2(8, 8)
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("1_mtceg")
+expand_mode = 3
+stretch_mode = 6
