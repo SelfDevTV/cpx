@@ -19,3 +19,14 @@ horizontal_alignment = 1
 move_speed = 400
 
 [node name="Canvas" parent="." instance=ExtResource("3_2jglr")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_left = 36.0
+offset_top = 43.0
+offset_right = 44.0
+offset_bottom = 51.0
+text = "Save"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bj6rob1dcv0jd"]
+[gd_scene load_steps=5 format=3 uid="uid://bj6rob1dcv0jd"]
 
 [ext_resource type="Script" uid="uid://c7os6htfyagfq" path="res://palette.gd" id="1_asnj0"]
 [ext_resource type="PackedScene" uid="uid://dk4wpc76mq28t" path="res://palette_button.tscn" id="1_kdwex"]
+[ext_resource type="FontFile" uid="uid://di0v0mw3bft3t" path="res://assets/gabs_pixel.ttf" id="3_tftnp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vxfax"]
+font = ExtResource("3_tftnp")
+font_size = 34
 
 [node name="Palette" type="Control"]
 z_index = 2
@@ -18,3 +23,12 @@ btn = ExtResource("1_kdwex")
 
 [node name="PaletteContainer" type="HBoxContainer" parent="."]
 layout_mode = 0
+
+[node name="Label" type="Label" parent="."]
+z_index = 1
+offset_left = 1.0
+offset_top = -41.0
+offset_right = 112.0
+offset_bottom = -16.0
+text = "Palette"
+label_settings = SubResource("LabelSettings_vxfax")
