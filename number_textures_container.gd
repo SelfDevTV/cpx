@@ -11,6 +11,7 @@ func setup():
 	for i in range(Globals.pixel_canvas.palette.size()):
 		var image = await _generate_text_tile(i + 1)
 		number_textures.set(i + 1, image)
+	print("finished setup")
 
 
 func _generate_text_tile(num: int) -> Image:

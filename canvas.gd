@@ -88,6 +88,7 @@ func _blend_numbers_on_pixels():
 		for y in range(pixel_canvas.canvas_tiled_size.y):
 			var pixel_num = pixel_canvas.get_pixel_number(x, y)
 			# num_image = await _generate_text_tile(pixel_num)
+			print(pixel_num)
 			img.blend_rect(NumberTexturesContainer.number_textures.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(x * PIXEL_SIZE, y * PIXEL_SIZE))
 			
 				

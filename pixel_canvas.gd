@@ -3,19 +3,19 @@ extends Resource
 
 @export var default_color: Color = Color(1, 1, 1, 1)
 
-var pixel_size: int
-var canvas_size: Vector2i
+@export var pixel_size: int
+@export var canvas_size: Vector2i
 
-var canvas_tiled_size: Vector2i
+@export var canvas_tiled_size: Vector2i
 
 
-var correct_colors: PackedColorArray
-var pixel_colors: PackedColorArray
+@export var correct_colors: PackedColorArray
+@export var pixel_colors: PackedColorArray
 
-var palette: PackedColorArray
-var image: Image
+@export var palette: PackedColorArray
+@export var image: Image
 
-func _init(new_pixel_size: int, new_canvas_size: Vector2i, new_palette: PackedColorArray, new_image: Image) -> void:
+func create(new_pixel_size: int, new_canvas_size: Vector2i, new_palette: PackedColorArray, new_image: Image) -> PixelCanvas:
 	pixel_size = new_pixel_size
 	canvas_size = new_canvas_size
 	image = new_image
@@ -30,6 +30,7 @@ func _init(new_pixel_size: int, new_canvas_size: Vector2i, new_palette: PackedCo
 		pixel_colors.append(default_color)
 		var correct_color = new_image.get_pixel(i % canvas_tiled_size.x * pixel_size, i / canvas_tiled_size.x * pixel_size)
 		correct_colors.append(correct_color)
+	return self
 
 
 func set_pixel_color(x: int, y: int, color: Color) -> void:
@@ -53,8 +54,14 @@ func get_correct_pixel_color(x: int, y: int) -> Color:
 func get_pixel_number(x: int, y: int) -> int:
 	if x < 0 or x >= canvas_tiled_size.x or y < 0 or y >= canvas_tiled_size.y:
 		return -1
+	var image_pixel_color = image.get_pixel(x * pixel_size, y * pixel_size)
+	
+	for i in range(palette.size()):
+		var c = palette[i]
+		if c.is_equal_approx(image_pixel_color):
+			return i + 1
+	return -1
 
-	return palette.find(image.get_pixel(x * pixel_size, y * pixel_size)) + 1
 
 func to_image() -> Image:
 	var img = Image.create(canvas_size.x, canvas_size.y, false, Image.FORMAT_RGBA8)

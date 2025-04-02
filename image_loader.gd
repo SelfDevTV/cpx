@@ -46,7 +46,7 @@ func _on_request_completed(_result: int, _response_code: int, _headers: Array, b
 	add_child(sprite)
 	sprite.position = Vector2(0, 0)
 
-	Globals.pixel_canvas = PixelCanvas.new(pixel_size, Vector2i(w, h), new_palette, img)
+	Globals.pixel_canvas = PixelCanvas.new().create(pixel_size, Vector2i(w, h), new_palette, img)
 	NumberTexturesContainer.setup()
 
 
