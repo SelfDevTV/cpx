@@ -1,12 +1,18 @@
 extends Node2D
 
 @export var api_path: String = "http://localhost:4000/random"
+@export var sprite: Sprite2D
 
 func _ready() -> void:
-	$Button.pressed.connect(func(): get_tree().change_scene_to_file("res://play.tscn"))
-	$Button.disabled = true
-	$Button.text = "Loading..."
+	$Play.pressed.connect(func(): get_tree().change_scene_to_file("res://play.tscn"))
 	$HTTPRequest.request_completed.connect(_on_request_completed)
+	fetch_image()
+
+func fetch_image() -> void:
+	$Play.disabled = true
+	$Play.text = "Loading..."
+	$Random.disabled = true
+	$Random.text = "Fetching..."
 	$HTTPRequest.request(api_path)
 
 
@@ -36,19 +42,27 @@ func _on_request_completed(_result: int, _response_code: int, _headers: Array, b
 
 	
 	var texture = ImageTexture.create_from_image(img)
-	var sprite = Sprite2D.new()
+	
 	sprite.centered = false
 	sprite.texture = texture
 
 
-	print(sprite.texture.get_width())
-	print(sprite.texture.get_height())
-	add_child(sprite)
-	sprite.position = Vector2(0, 0)
+	var margin = 50
+	sprite.position = (get_viewport_rect().size - sprite.texture.get_size()) / 2
+	sprite.position.y += margin / 2
+	var scale_factor = min(get_viewport_rect().size.x / sprite.texture.get_size().x, (get_viewport_rect().size.y - margin) / sprite.texture.get_size().y)
+	sprite.scale = Vector2(scale_factor, scale_factor)
+	
 
 	Globals.pixel_canvas = PixelCanvas.new().create(pixel_size, Vector2i(w, h), new_palette, img)
 	NumberTexturesContainer.setup()
 
 
-	$Button.disabled = false
-	$Button.text = "Play"
+	$Play.disabled = false
+	$Play.text = "Play"
+	$Random.disabled = false
+	$Random.text = "New Random"
+
+
+func _on_random_pressed() -> void:
+	fetch_image()

@@ -3,18 +3,28 @@
 [ext_resource type="Script" uid="uid://c44j1tw7mirei" path="res://image_loader.gd" id="1_ubsee"]
 [ext_resource type="PackedScene" uid="uid://bj6rob1dcv0jd" path="res://palette.tscn" id="2_dyyfw"]
 
-[node name="ImageLoader" type="Node2D"]
+[node name="ImageLoader" type="Node2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_ubsee")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[node name="Button" type="Button" parent="."]
+[node name="Play" type="Button" parent="."]
 z_index = 1
-offset_left = 526.0
-offset_top = 525.0
-offset_right = 567.0
-offset_bottom = 556.0
-text = "Play"
+offset_left = 24.0
+offset_top = 372.0
+offset_right = 65.0
+offset_bottom = 403.0
+text = "Play this Drawing"
+
+[node name="Random" type="Button" parent="."]
+offset_left = 26.0
+offset_top = 322.0
+offset_right = 138.0
+offset_bottom = 353.0
+text = "New Random"
 
 [node name="Palette" parent="." instance=ExtResource("2_dyyfw")]
 anchors_preset = 0
@@ -28,3 +38,5 @@ offset_right = 27.0
 offset_bottom = 472.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[connection signal="pressed" from="Random" to="." method="_on_random_pressed"]

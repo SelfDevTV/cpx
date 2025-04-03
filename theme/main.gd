@@ -7,3 +7,7 @@ func _on_load_existing_image_pressed() -> void:
 	Globals.pixel_canvas = drawing
 	await NumberTexturesContainer.setup()
 	get_tree().change_scene_to_file("res://play.tscn")
+
+
+func _on_create_from_internet_pressed() -> void:
+	get_tree().change_scene_to_file("res://image_loader.tscn")

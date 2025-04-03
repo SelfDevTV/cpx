@@ -10,6 +10,9 @@ var buttons: Array[PaletteButton] = []
 
 
 func set_palette(palette: PackedColorArray) -> void:
+	for child in palette_container.get_children():
+		child.queue_free()
+	buttons.clear()
 	for i in range(palette.size()):
 		var button = btn.instantiate() as PaletteButton
 	   
