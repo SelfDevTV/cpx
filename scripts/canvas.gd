@@ -66,7 +66,12 @@ func draw_on_pixel(pixel_x, pixel_y):
 	# if not correct color, blend number
 	if pixel_canvas.get_correct_pixel_color(pixel_x, pixel_y) != current_drawing_color:
 		var pixel_num = pixel_canvas.get_pixel_number(pixel_x, pixel_y)
-		img.blend_rect(NumberTexturesContainer.number_textures.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(pixel_x * PIXEL_SIZE, pixel_y * PIXEL_SIZE))
+		if current_drawing_color.get_luminance() > 0.5:
+			# light
+			img.blend_rect(NumberTexturesContainer.number_textures_dark.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(pixel_x * PIXEL_SIZE, pixel_y * PIXEL_SIZE))
+		else:
+			# dark
+			img.blend_rect(NumberTexturesContainer.number_textures_light.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(pixel_x * PIXEL_SIZE, pixel_y * PIXEL_SIZE))
 
 	# update resourec
 	pixel_canvas.set_pixel_color(pixel_x, pixel_y, current_drawing_color)
@@ -89,9 +94,13 @@ func _blend_numbers_on_pixels():
 	for x in range(pixel_canvas.canvas_tiled_size.x):
 		for y in range(pixel_canvas.canvas_tiled_size.y):
 			var pixel_num = pixel_canvas.get_pixel_number(x, y)
-			if pixel_canvas.get_correct_pixel_color(x, y) != pixel_canvas.get_pixel_color(x, y):
+			var pixel_col = pixel_canvas.get_pixel_color(x, y)
+			if pixel_canvas.get_correct_pixel_color(x, y) != pixel_col:
 				print(pixel_num)
-				img.blend_rect(NumberTexturesContainer.number_textures.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(x * PIXEL_SIZE, y * PIXEL_SIZE))
+				if pixel_col.get_luminance() > 0.5:
+					img.blend_rect(NumberTexturesContainer.number_textures_dark.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(x * PIXEL_SIZE, y * PIXEL_SIZE))
+				else:
+					img.blend_rect(NumberTexturesContainer.number_textures_light.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(x * PIXEL_SIZE, y * PIXEL_SIZE))
 			
 				
 	tex.update(img)

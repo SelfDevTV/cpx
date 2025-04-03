@@ -2,8 +2,14 @@ class_name Main
 extends Node2D
 
 
+func _ready() -> void:
+	var dir = DirAccess.open("user://")
+	if not dir.dir_exists("drawings"):
+		dir.make_dir("drawings")
+
+
 func _on_load_existing_image_pressed() -> void:
-	var dir = DirAccess.open("res://drawings")
+	var dir = DirAccess.open("user://drawings")
 	dir.list_dir_begin()
 	var first_file = dir.get_next()
 	var drawing = SaveAndLoadManager.load_drawing(first_file.replace(".tres", ""))

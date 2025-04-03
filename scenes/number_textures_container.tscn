@@ -1,30 +1,28 @@
-[gd_scene load_steps=13 format=3 uid="uid://4kraxmeotgne"]
+[gd_scene load_steps=12 format=3 uid="uid://4kraxmeotgne"]
 
 [ext_resource type="Script" uid="uid://o8pvl7352c6f" path="res://scripts/number_textures_container.gd" id="1_m6l3d"]
 [ext_resource type="PackedScene" uid="uid://l1sdrk43g4cs" path="res://scenes/number_texture.tscn" id="2_x6g1q"]
 [ext_resource type="Texture2D" uid="uid://cjmwucphe5ko8" path="res://assets/1.png" id="3_cdtdt"]
-[ext_resource type="Texture2D" uid="uid://d0bss04ctetwr" path="res://assets/2.png" id="4_ayxwk"]
-[ext_resource type="Texture2D" uid="uid://v8u0r6ey2swj" path="res://assets/0.png" id="5_efpwd"]
-[ext_resource type="Texture2D" uid="uid://crrrjjpl7wv0x" path="res://assets/3.png" id="6_sh8xn"]
-[ext_resource type="Texture2D" uid="uid://bhqtt0osm8rg8" path="res://assets/4.png" id="7_j6wqq"]
-[ext_resource type="Texture2D" uid="uid://dvm04c23burw6" path="res://assets/5.png" id="8_jub81"]
-[ext_resource type="Texture2D" uid="uid://64ssdnvcegqy" path="res://assets/6.png" id="9_1br1s"]
-[ext_resource type="Texture2D" uid="uid://dbxdlphd8osoi" path="res://assets/7.png" id="10_m0if2"]
-[ext_resource type="Texture2D" uid="uid://d3msx2pclirrg" path="res://assets/8.png" id="11_ogrr1"]
-[ext_resource type="Texture2D" uid="uid://20hvk70bhu54" path="res://assets/9.png" id="12_sh8xn"]
+[ext_resource type="Texture2D" uid="uid://d0bss04ctetwr" path="res://assets/2.png" id="4_hfas6"]
+[ext_resource type="Texture2D" uid="uid://crrrjjpl7wv0x" path="res://assets/3.png" id="5_2hflq"]
+[ext_resource type="Texture2D" uid="uid://bhqtt0osm8rg8" path="res://assets/4.png" id="6_32e7d"]
+[ext_resource type="Texture2D" uid="uid://dvm04c23burw6" path="res://assets/5.png" id="7_hm4vq"]
+[ext_resource type="Texture2D" uid="uid://64ssdnvcegqy" path="res://assets/6.png" id="8_ms4ww"]
+[ext_resource type="Texture2D" uid="uid://dbxdlphd8osoi" path="res://assets/7.png" id="9_vl6xe"]
+[ext_resource type="Texture2D" uid="uid://d3msx2pclirrg" path="res://assets/8.png" id="10_d1bk1"]
+[ext_resource type="Texture2D" uid="uid://20hvk70bhu54" path="res://assets/9.png" id="11_31eij"]
 
 [node name="NumberTexturesContainer" type="Node"]
 script = ExtResource("1_m6l3d")
 num_texture_scene = ExtResource("2_x6g1q")
 numbers = Dictionary[int, Texture2D]({
-0: ExtResource("5_efpwd"),
 1: ExtResource("3_cdtdt"),
-2: ExtResource("4_ayxwk"),
-3: ExtResource("6_sh8xn"),
-4: ExtResource("7_j6wqq"),
-5: ExtResource("8_jub81"),
-6: ExtResource("9_1br1s"),
-7: ExtResource("10_m0if2"),
-8: ExtResource("11_ogrr1"),
-9: ExtResource("12_sh8xn")
+2: ExtResource("4_hfas6"),
+3: ExtResource("5_2hflq"),
+4: ExtResource("6_32e7d"),
+5: ExtResource("7_hm4vq"),
+6: ExtResource("8_ms4ww"),
+7: ExtResource("9_vl6xe"),
+8: ExtResource("10_d1bk1"),
+9: ExtResource("11_31eij")
 })
