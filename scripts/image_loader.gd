@@ -32,8 +32,7 @@ func _on_request_completed(_result: int, _response_code: int, _headers: Array, b
 		var color = Color.hex(palette[i]["color"].to_int())
 		new_palette.append(color)
 	
-	%Palette.set_palette(new_palette)
-	
+
 	imgBase64 = imgBase64.replace("data:image/png;base64,", "")
 	
 	var imgData = Marshalls.base64_to_raw(imgBase64)

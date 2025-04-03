@@ -16,9 +16,10 @@ var last_drag_pos: Vector2i
 
 
 @export var num_texture_scene: PackedScene
-@export var color_switcher: ColorSwitcher
 
 var num_image: Image
+
+var current_drawing_color: Color
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -60,22 +61,20 @@ func draw_on_pixel(pixel_x, pixel_y):
 	# update image
 	for x in range(PIXEL_SIZE):
 		for y in range(PIXEL_SIZE):
-				img.set_pixel(pixel_x * PIXEL_SIZE + x, pixel_y * PIXEL_SIZE + y, color_switcher.current_color)
+				img.set_pixel(pixel_x * PIXEL_SIZE + x, pixel_y * PIXEL_SIZE + y, current_drawing_color)
 
 	# if not correct color, blend number
-	if pixel_canvas.get_correct_pixel_color(pixel_x, pixel_y) != color_switcher.current_color:
+	if pixel_canvas.get_correct_pixel_color(pixel_x, pixel_y) != current_drawing_color:
 		var pixel_num = pixel_canvas.get_pixel_number(pixel_x, pixel_y)
 		img.blend_rect(NumberTexturesContainer.number_textures.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(pixel_x * PIXEL_SIZE, pixel_y * PIXEL_SIZE))
 
 	# update resourec
-	pixel_canvas.set_pixel_color(pixel_x, pixel_y, color_switcher.current_color)
+	pixel_canvas.set_pixel_color(pixel_x, pixel_y, current_drawing_color)
 	
 	# update texture
 	tex.update(img)
 
 func _ready() -> void:
-	color_switcher.set_palette(pixel_canvas.palette)
-	
 	img = pixel_canvas.to_image()
 	tex = ImageTexture.create_from_image(img)
 	texture = tex
@@ -90,9 +89,9 @@ func _blend_numbers_on_pixels():
 	for x in range(pixel_canvas.canvas_tiled_size.x):
 		for y in range(pixel_canvas.canvas_tiled_size.y):
 			var pixel_num = pixel_canvas.get_pixel_number(x, y)
-			# num_image = await _generate_text_tile(pixel_num)
-			print(pixel_num)
-			img.blend_rect(NumberTexturesContainer.number_textures.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(x * PIXEL_SIZE, y * PIXEL_SIZE))
+			if pixel_canvas.get_correct_pixel_color(x, y) != pixel_canvas.get_pixel_color(x, y):
+				print(pixel_num)
+				img.blend_rect(NumberTexturesContainer.number_textures.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(x * PIXEL_SIZE, y * PIXEL_SIZE))
 			
 				
 	tex.update(img)
@@ -117,3 +116,8 @@ func _blend_numbers_on_pixels():
 # 	await RenderingServer.frame_post_draw
 
 # 	var image = viewport.get_texture().get_image()
+
+
+func _on_drawing_ui_color_changed(color: Color) -> void:
+	print("new color yiha")
+	current_drawing_color = color

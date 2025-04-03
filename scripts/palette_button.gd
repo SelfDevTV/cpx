@@ -8,13 +8,12 @@ var color_index: int = -1
 
 var my_sb: StyleBoxFlat
 var l: float
+var color: Color
 
 func set_is_primary(is_primary: bool) -> void:
     # Set the button as primary or secondary
     if is_primary:
         my_sb.border_color = Color(1, 0, 0, 1) # gray
-        
-        
     else:
         my_sb.border_color = Color(0, 0, 0, 1) # gray
 
@@ -23,15 +22,16 @@ func set_button_text(new_text: String) -> void:
     # Set the button text
     text = new_text
 
-func set_button_color(new_color_index: int, color: Color) -> void:
+func set_button_color(new_color_index: int, new_color: Color) -> void:
     color_index = new_color_index
+    color = new_color
     # Set the button color
     print("color is: ", color)
 
 
     my_sb = sb.duplicate() as StyleBoxFlat
     
-    my_sb.bg_color = color
+    my_sb.bg_color = new_color
     my_sb.set_border_width_all(2)
     my_sb.border_color = Color.BLACK
 

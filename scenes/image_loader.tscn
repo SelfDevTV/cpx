@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dijhi4xr7y7h3"]
+[gd_scene load_steps=2 format=3 uid="uid://dijhi4xr7y7h3"]
 
 [ext_resource type="Script" uid="uid://c44j1tw7mirei" path="res://scripts/image_loader.gd" id="1_ubsee"]
-[ext_resource type="PackedScene" uid="uid://bj6rob1dcv0jd" path="res://scenes/palette.tscn" id="2_dyyfw"]
 
 [node name="ImageLoader" type="Node2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_ubsee")
@@ -28,19 +27,5 @@ offset_top = 322.0
 offset_right = 138.0
 offset_bottom = 353.0
 text = "New Random"
-
-[node name="Palette" parent="." instance=ExtResource("2_dyyfw")]
-unique_name_in_owner = true
-anchors_preset = 0
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 27.0
-offset_top = 472.0
-offset_right = 27.0
-offset_bottom = 472.0
-grow_horizontal = 1
-grow_vertical = 1
 
 [connection signal="pressed" from="Random" to="." method="_on_random_pressed"]
