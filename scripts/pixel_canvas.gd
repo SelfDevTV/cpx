@@ -14,6 +14,9 @@ extends Resource
 
 @export var palette: PackedColorArray
 @export var image: Image
+@export var amount_correct_colors: int = 0
+
+signal pixel_drawn()
 
 func create(new_pixel_size: int, new_canvas_size: Vector2i, new_palette: PackedColorArray, new_image: Image) -> PixelCanvas:
 	pixel_size = new_pixel_size
@@ -36,8 +39,15 @@ func create(new_pixel_size: int, new_canvas_size: Vector2i, new_palette: PackedC
 func set_pixel_color(x: int, y: int, color: Color) -> void:
 	if x < 0 or x >= canvas_tiled_size.x or y < 0 or y >= canvas_tiled_size.y:
 		return
+	if color == get_pixel_color(x, y):
+		return
+	if color == get_correct_pixel_color(x, y):
+		amount_correct_colors += 1
+	else:
+		amount_correct_colors -= 1
 
 	pixel_colors[y * canvas_tiled_size.x + x] = color
+	emit_signal("pixel_drawn")
 
 func get_pixel_color(x: int, y: int) -> Color:
 	if x < 0 or x >= canvas_tiled_size.x or y < 0 or y >= canvas_tiled_size.y:
@@ -61,6 +71,9 @@ func get_pixel_number(x: int, y: int) -> int:
 		if c.is_equal_approx(image_pixel_color):
 			return i + 1
 	return -1
+
+func get_pixels_remaining() -> int:
+	return pixel_colors.size() - amount_correct_colors
 
 
 func to_image() -> Image:

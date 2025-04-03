@@ -9,7 +9,7 @@ var current_color_index = 0
 
 signal color_changed(color: Color)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_anything_pressed():
 		for i in range(1, 10):
 			if Input.is_action_just_pressed(str(i)):

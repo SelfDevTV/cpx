@@ -96,28 +96,6 @@ func _blend_numbers_on_pixels():
 				
 	tex.update(img)
 
-# func _generate_text_tile(num: int) -> Image:
-# 	var viewport = SubViewport.new()
-# 	viewport.size = Vector2(PIXEL_SIZE, PIXEL_SIZE)
-# 	viewport.transparent_bg = true
-# 	# viewport.render_target_clear_mode = SubViewport.CLEAR_MODE_ALWAYS
-	
-# 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-# 	# viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
-# 	var num_tex = NumberTexturesContainer.number_textures.get(num)
-	
-# 	var num_lbl = num_texture_scene.instantiate() as TextureRect
-# 	viewport.add_child(num_lbl)
-# 	num_lbl.position = Vector2.ZERO
-
-
-# 	add_child(viewport)
-
-# 	await RenderingServer.frame_post_draw
-
-# 	var image = viewport.get_texture().get_image()
-
-
 func _on_drawing_ui_color_changed(color: Color) -> void:
 	print("new color yiha")
 	current_drawing_color = color
