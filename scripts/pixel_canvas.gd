@@ -16,6 +16,8 @@ extends Resource
 @export var image: Image
 @export var amount_correct_colors: int = 0
 
+@export var name: String
+
 signal pixel_drawn()
 
 func create(new_pixel_size: int, new_canvas_size: Vector2i, new_palette: PackedColorArray, new_image: Image) -> PixelCanvas:

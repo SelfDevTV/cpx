@@ -21,4 +21,9 @@ offset_right = 71.0
 offset_bottom = 74.0
 text = "Save"
 
+[node name="SaveInterval" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="SaveInterval" to="." method="_on_save_interval_timeout"]

@@ -1,11 +1,11 @@
 extends Node
 
 # returns true if the drawing was saved successfully
-func save_drawing(drawing: PixelCanvas, drawing_name: String) -> bool:
+func save_drawing(drawing: PixelCanvas, drawing_name: String, override: bool = false) -> bool:
 	var all_drawings = DirAccess.open("res://drawings")
 	all_drawings.list_dir_begin()
 	var exists = all_drawings.file_exists(drawing_name + ".tres")
-	if exists:
+	if exists and not override:
 		return false
 	ResourceSaver.save(drawing, "res://drawings/" + drawing_name + ".tres")
 	return true

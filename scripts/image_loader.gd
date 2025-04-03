@@ -78,4 +78,5 @@ func _on_play_pressed() -> void:
 	if not success:
 		warning_lbl.text = "Drawing already exists"
 		return
+	Globals.pixel_canvas.name = drawing_name.text
 	get_tree().change_scene_to_file("res://scenes/play.tscn")
