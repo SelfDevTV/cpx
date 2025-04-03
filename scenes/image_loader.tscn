@@ -28,4 +28,22 @@ offset_right = 138.0
 offset_bottom = 353.0
 text = "New Random"
 
+[node name="DrawingName" type="LineEdit" parent="."]
+unique_name_in_owner = true
+offset_left = 20.0
+offset_top = 423.0
+offset_right = 267.0
+offset_bottom = 461.0
+placeholder_text = "Name of Drawing"
+alignment = 1
+
+[node name="WarningLbl" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 29.0
+offset_top = 240.0
+offset_right = 69.0
+offset_bottom = 256.0
+theme_override_colors/font_color = Color(0.766211, 0.371116, 0, 1)
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Random" to="." method="_on_random_pressed"]

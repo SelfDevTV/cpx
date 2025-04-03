@@ -3,8 +3,11 @@ extends Node2D
 @export var api_path: String = "http://localhost:4000/random"
 @export var sprite: Sprite2D
 
+
+@onready var drawing_name: LineEdit = %DrawingName
+@onready var warning_lbl: Label = %WarningLbl
+
 func _ready() -> void:
-	%Play.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/play.tscn"))
 	%HTTPRequest.request_completed.connect(_on_request_completed)
 	fetch_image()
 
@@ -65,3 +68,14 @@ func _on_request_completed(_result: int, _response_code: int, _headers: Array, b
 
 func _on_random_pressed() -> void:
 	fetch_image()
+
+
+func _on_play_pressed() -> void:
+	if drawing_name.text == "":
+		warning_lbl.text = "Must enter a name"
+		return
+	var success = SaveAndLoadManager.save_drawing(Globals.pixel_canvas, drawing_name.text)
+	if not success:
+		warning_lbl.text = "Drawing already exists"
+		return
+	get_tree().change_scene_to_file("res://scenes/play.tscn")
