@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dk4wpc76mq28t"]
 
-[ext_resource type="StyleBox" uid="uid://bkrs4j5m1y503" path="res://theme/button_styleboxflat.tres" id="1_si25c"]
-[ext_resource type="Script" uid="uid://dqqt1d43o5b30" path="res://palette_button.gd" id="2_si25c"]
+[ext_resource type="StyleBox" uid="uid://bkrs4j5m1y503" path="res://theme/button_styleboxflat.tres" id="1_12vdk"]
+[ext_resource type="Script" uid="uid://dqqt1d43o5b30" path="res://scripts/palette_button.gd" id="2_0dwa2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hs7y5"]
 bg_color = Color(1, 0.697843, 0.8274, 1)
@@ -12,7 +12,7 @@ shadow_offset = Vector2(0, 4)
 [sub_resource type="Theme" id="Theme_ppt7h"]
 Button/styles/focus = null
 Button/styles/hover = SubResource("StyleBoxFlat_hs7y5")
-Button/styles/normal = ExtResource("1_si25c")
+Button/styles/normal = ExtResource("1_12vdk")
 Button/styles/pressed = null
 
 [node name="PaletteButton" type="Button"]
@@ -21,5 +21,5 @@ size_flags_horizontal = 3
 theme = SubResource("Theme_ppt7h")
 theme_type_variation = &"FlatButton"
 text = "1"
-script = ExtResource("2_si25c")
-sb = ExtResource("1_si25c")
+script = ExtResource("2_0dwa2")
+sb = ExtResource("1_12vdk")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bj6rob1dcv0jd"]
 
-[ext_resource type="Script" uid="uid://c7os6htfyagfq" path="res://palette.gd" id="1_asnj0"]
-[ext_resource type="PackedScene" uid="uid://dk4wpc76mq28t" path="res://palette_button.tscn" id="1_kdwex"]
+[ext_resource type="Script" uid="uid://c7os6htfyagfq" path="res://scripts/palette.gd" id="1_asnj0"]
+[ext_resource type="PackedScene" uid="uid://dk4wpc76mq28t" path="res://scenes/palette_button.tscn" id="1_kdwex"]
 [ext_resource type="FontFile" uid="uid://di0v0mw3bft3t" path="res://assets/gabs_pixel.ttf" id="3_tftnp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vxfax"]
@@ -26,6 +26,7 @@ layout_mode = 0
 
 [node name="Label" type="Label" parent="."]
 z_index = 1
+layout_mode = 0
 offset_left = 1.0
 offset_top = -41.0
 offset_right = 112.0

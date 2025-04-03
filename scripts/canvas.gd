@@ -22,7 +22,7 @@ var num_image: Image
 
 
 func _gui_input(event: InputEvent) -> void:
-	var mouse_pos = get_global_mouse_position()
+	var mouse_pos = get_local_mouse_position()
 	var pixel_x = int(mouse_pos.x / PIXEL_SIZE)
 	var pixel_y = int(mouse_pos.y / PIXEL_SIZE)
 	if pixel_x < 0 or pixel_x >= pixel_canvas.canvas_tiled_size.x or pixel_y < 0 or pixel_y >= pixel_canvas.canvas_tiled_size.y:
@@ -38,7 +38,7 @@ func _gui_input(event: InputEvent) -> void:
 		
 func _process(_delta: float) -> void:
 	if is_mouse_down:
-		var mouse_pos = get_global_mouse_position()
+		var mouse_pos = get_local_mouse_position()
 		var pixel_x = int(mouse_pos.x / PIXEL_SIZE)
 		var pixel_y = int(mouse_pos.y / PIXEL_SIZE)
 		mouse_drag(mouse_pos, pixel_x, pixel_y)
@@ -80,6 +80,9 @@ func _ready() -> void:
 	tex = ImageTexture.create_from_image(img)
 	texture = tex
 	# num_image = await _generate_text_tile(1)
+
+	# Center the Canvas node on the screen
+	position = (get_viewport_rect().size - size) / 2
 	_blend_numbers_on_pixels()
 
 

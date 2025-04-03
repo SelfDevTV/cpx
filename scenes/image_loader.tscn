@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dijhi4xr7y7h3"]
 
-[ext_resource type="Script" uid="uid://c44j1tw7mirei" path="res://image_loader.gd" id="1_ubsee"]
-[ext_resource type="PackedScene" uid="uid://bj6rob1dcv0jd" path="res://palette.tscn" id="2_dyyfw"]
+[ext_resource type="Script" uid="uid://c44j1tw7mirei" path="res://scripts/image_loader.gd" id="1_ubsee"]
+[ext_resource type="PackedScene" uid="uid://bj6rob1dcv0jd" path="res://scenes/palette.tscn" id="2_dyyfw"]
 
 [node name="ImageLoader" type="Node2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_ubsee")
@@ -10,8 +10,10 @@ sprite = NodePath("Sprite2D")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+unique_name_in_owner = true
 
 [node name="Play" type="Button" parent="."]
+unique_name_in_owner = true
 z_index = 1
 offset_left = 24.0
 offset_top = 372.0
@@ -20,6 +22,7 @@ offset_bottom = 403.0
 text = "Play this Drawing"
 
 [node name="Random" type="Button" parent="."]
+unique_name_in_owner = true
 offset_left = 26.0
 offset_top = 322.0
 offset_right = 138.0
@@ -27,6 +30,7 @@ offset_bottom = 353.0
 text = "New Random"
 
 [node name="Palette" parent="." instance=ExtResource("2_dyyfw")]
+unique_name_in_owner = true
 anchors_preset = 0
 anchor_left = 0.0
 anchor_top = 0.0

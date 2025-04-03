@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://f1j0bncyw4p1"]
+[gd_scene load_steps=9 format=3 uid="uid://f1j0bncyw4p1"]
 
-[ext_resource type="Script" uid="uid://cl0h0xttiiljn" path="res://canvas.gd" id="1_75aqd"]
+[ext_resource type="Script" uid="uid://cl0h0xttiiljn" path="res://scripts/canvas.gd" id="1_75aqd"]
 [ext_resource type="Texture2D" uid="uid://70nmjv3x4but" path="res://icon.svg" id="2_pfdkn"]
 [ext_resource type="Texture2D" uid="uid://bu1uirw7i8tn6" path="res://assets/tilemap_black.png" id="4_k4n84"]
-[ext_resource type="PackedScene" uid="uid://l1sdrk43g4cs" path="res://number_texture.tscn" id="4_uoc13"]
-[ext_resource type="PackedScene" uid="uid://c1jklhqwulyns" path="res://color_switcher.tscn" id="7_d11g6"]
+[ext_resource type="PackedScene" uid="uid://l1sdrk43g4cs" path="res://scenes/number_texture.tscn" id="4_uoc13"]
+[ext_resource type="PackedScene" uid="uid://bijvqv55b5ths" path="res://scenes/ui/drawing_ui.tscn" id="6_y5mtt"]
+[ext_resource type="PackedScene" uid="uid://c1jklhqwulyns" path="res://scenes/color_switcher.tscn" id="7_d11g6"]
 
 [sub_resource type="GDScript" id="GDScript_uoc13"]
 script/source = "class_name NumberToTex
@@ -26,6 +27,13 @@ atlas = ExtResource("4_k4n84")
 region = Rect2(291, 155, 11, 11)
 
 [node name="Canvas" type="TextureRect" node_paths=PackedStringArray("color_switcher")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_75aqd")
 godot_icon = ExtResource("2_pfdkn")
 num_texture_scene = ExtResource("4_uoc13")
@@ -38,5 +46,7 @@ dic = Dictionary[int, AtlasTexture]({
 })
 
 [node name="ColorSwitcher" parent="." instance=ExtResource("7_d11g6")]
+
+[node name="DrawingUI" parent="." instance=ExtResource("6_y5mtt")]
 
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

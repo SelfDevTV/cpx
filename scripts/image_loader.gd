@@ -4,16 +4,16 @@ extends Node2D
 @export var sprite: Sprite2D
 
 func _ready() -> void:
-	$Play.pressed.connect(func(): get_tree().change_scene_to_file("res://play.tscn"))
-	$HTTPRequest.request_completed.connect(_on_request_completed)
+	%Play.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/play.tscn"))
+	%HTTPRequest.request_completed.connect(_on_request_completed)
 	fetch_image()
 
 func fetch_image() -> void:
-	$Play.disabled = true
-	$Play.text = "Loading..."
-	$Random.disabled = true
-	$Random.text = "Fetching..."
-	$HTTPRequest.request(api_path)
+	%Play.disabled = true
+	%Play.text = "Loading..."
+	%Random.disabled = true
+	%Random.text = "Fetching..."
+	%HTTPRequest.request(api_path)
 
 
 func _on_request_completed(_result: int, _response_code: int, _headers: Array, body: PackedByteArray) -> void:
@@ -32,7 +32,7 @@ func _on_request_completed(_result: int, _response_code: int, _headers: Array, b
 		var color = Color.hex(palette[i]["color"].to_int())
 		new_palette.append(color)
 	
-	$Palette.set_palette(new_palette)
+	%Palette.set_palette(new_palette)
 	
 	imgBase64 = imgBase64.replace("data:image/png;base64,", "")
 	
@@ -58,10 +58,10 @@ func _on_request_completed(_result: int, _response_code: int, _headers: Array, b
 	NumberTexturesContainer.setup()
 
 
-	$Play.disabled = false
-	$Play.text = "Play"
-	$Random.disabled = false
-	$Random.text = "New Random"
+	%Play.disabled = false
+	%Play.text = "Play"
+	%Random.disabled = false
+	%Random.text = "New Random"
 
 
 func _on_random_pressed() -> void:

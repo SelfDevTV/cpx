@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*res://globals.gd"
-NumberTexturesContainer="*res://number_textures_container.tscn"
+Globals="*res://scripts/globals.gd"
+NumberTexturesContainer="*res://scenes/number_textures_container.tscn"
 Utils="*res://utils/utils.gd"
 SaveAndLoadManager="*res://utils/save_and_load_manager.gd"
 
@@ -26,6 +26,10 @@ SaveAndLoadManager="*res://utils/save_and_load_manager.gd"
 
 window/size/transparent=true
 window/energy_saving/keep_screen_on=false
+
+[gui]
+
+theme/custom="uid://bbsdiehruds81"
 
 [input]
 
