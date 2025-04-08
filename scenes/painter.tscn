@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3vrurb6jrjaf"]
+
+[ext_resource type="Script" uid="uid://dmu7y0vhl3xuu" path="res://scripts/painter.gd" id="1_di2xp"]
+[ext_resource type="Texture2D" uid="uid://70nmjv3x4but" path="res://icon.svg" id="1_kp2s1"]
+
+[node name="Painter" type="Node2D"]
+script = ExtResource("1_di2xp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 3.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kp2s1")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="PaintTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="PaintTimer" to="." method="_on_paint_timer_timeout"]

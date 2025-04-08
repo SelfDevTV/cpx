@@ -3,6 +3,7 @@ extends Camera2D
 
 @export var move_speed := 300 # Speed of camera movement
 
+
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:

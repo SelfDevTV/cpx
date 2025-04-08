@@ -34,7 +34,7 @@ func _gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("click"):
 		is_mouse_down = true
 		last_drag_pos = Vector2i(pixel_x, pixel_y)
-		draw_on_pixel(pixel_x, pixel_y)
+		draw_on_pixel(pixel_x, pixel_y, current_drawing_color)
 
 		
 func _process(_delta: float) -> void:
@@ -54,19 +54,19 @@ func mouse_drag(_mouse_pos: Vector2, pixel_x: int, pixel_y: int) -> void:
 	if last_drag_pos != null:
 		var points = Utils.bresenham_line(last_drag_pos.x, last_drag_pos.y, pixel_x, pixel_y)
 		for p in points:
-			draw_on_pixel(p.x, p.y)
+			draw_on_pixel(p.x, p.y, current_drawing_color)
 			
 
-func draw_on_pixel(pixel_x, pixel_y):
+func draw_on_pixel(pixel_x, pixel_y, color: Color):
 	# update image
 	for x in range(PIXEL_SIZE):
 		for y in range(PIXEL_SIZE):
-				img.set_pixel(pixel_x * PIXEL_SIZE + x, pixel_y * PIXEL_SIZE + y, current_drawing_color)
+				img.set_pixel(pixel_x * PIXEL_SIZE + x, pixel_y * PIXEL_SIZE + y, color)
 
 	# if not correct color, blend number
-	if pixel_canvas.get_correct_pixel_color(pixel_x, pixel_y) != current_drawing_color:
+	if pixel_canvas.get_correct_pixel_color(pixel_x, pixel_y) != color:
 		var pixel_num = pixel_canvas.get_pixel_number(pixel_x, pixel_y)
-		if current_drawing_color.get_luminance() > 0.5:
+		if color.get_luminance() > 0.5:
 			# light
 			img.blend_rect(NumberTexturesContainer.number_textures_dark.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(pixel_x * PIXEL_SIZE, pixel_y * PIXEL_SIZE))
 		else:
@@ -74,7 +74,7 @@ func draw_on_pixel(pixel_x, pixel_y):
 			img.blend_rect(NumberTexturesContainer.number_textures_light.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(pixel_x * PIXEL_SIZE, pixel_y * PIXEL_SIZE))
 
 	# update resourec
-	pixel_canvas.set_pixel_color(pixel_x, pixel_y, current_drawing_color)
+	pixel_canvas.set_pixel_color(pixel_x, pixel_y, color)
 	
 	# update texture
 	tex.update(img)
@@ -96,7 +96,6 @@ func _blend_numbers_on_pixels():
 			var pixel_num = pixel_canvas.get_pixel_number(x, y)
 			var pixel_col = pixel_canvas.get_pixel_color(x, y)
 			if pixel_canvas.get_correct_pixel_color(x, y) != pixel_col:
-				print(pixel_num)
 				if pixel_col.get_luminance() > 0.5:
 					img.blend_rect(NumberTexturesContainer.number_textures_dark.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(x * PIXEL_SIZE, y * PIXEL_SIZE))
 				else:
@@ -106,5 +105,4 @@ func _blend_numbers_on_pixels():
 	tex.update(img)
 
 func _on_drawing_ui_color_changed(color: Color) -> void:
-	print("new color yiha")
 	current_drawing_color = color

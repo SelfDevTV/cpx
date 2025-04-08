@@ -10,8 +10,9 @@ gradient = SubResource("Gradient_o5qli")
 width = 130
 fill = 1
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("load_existing_image_btn")]
 script = ExtResource("1_u6bpe")
+load_existing_image_btn = NodePath("CanvasLayer/Control/VBoxContainer/Load Existing Image")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

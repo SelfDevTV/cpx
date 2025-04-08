@@ -1,12 +1,25 @@
 class_name Main
 extends Node2D
 
+@export var load_existing_image_btn: Button
+
 
 func _ready() -> void:
 	var dir = DirAccess.open("user://")
 	if not dir.dir_exists("drawings"):
 		dir.make_dir("drawings")
+		load_existing_image_btn.hide()
+		return
 
+	
+	var drawings_dir = DirAccess.open("user://drawings")
+	drawings_dir.list_dir_begin()
+	if drawings_dir.get_files().size() == 0:
+		load_existing_image_btn.hide()
+		return
+	else:
+		load_existing_image_btn.show()
+	
 
 func _on_load_existing_image_pressed() -> void:
 	var dir = DirAccess.open("user://drawings")
