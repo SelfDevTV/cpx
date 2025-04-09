@@ -16,11 +16,14 @@ var target_pixel: Vector2i
 var painted_pixels: Array[Vector2i] = []
 
 @export var move_speed: float = 100.0
-@export var canvas: Canvas
+
+var painter_resource: PainterResource
+var canvas: Canvas
 
 
 func _ready() -> void:
 	# get random position from the drawing canvas
+	canvas = get_tree().get_first_node_in_group("canvas")
 	state = State.MOVING
 	target_pixel = get_rand_pixel()
 	target_pos = get_rand_pos(target_pixel)
@@ -42,7 +45,7 @@ func _process(delta: float) -> void:
 
 func get_rand_pixel() -> Vector2i:
 	var px = Vector2i(randi_range(0, pixel_canvas.canvas_tiled_size.x - 1), randi_range(0, pixel_canvas.canvas_tiled_size.y - 1))
-	while painted_pixels.has(px):
+	while painter_resource.painted_pixels.has(px):
 		px = Vector2i(randi_range(0, pixel_canvas.canvas_tiled_size.x - 1), randi_range(0, pixel_canvas.canvas_tiled_size.y - 1))
 	return px
 
@@ -52,7 +55,7 @@ func get_rand_pos(pixel: Vector2i) -> Vector2:
 func _on_paint_timer_timeout() -> void:
 	var correct_col = pixel_canvas.get_correct_pixel_color(target_pixel.x, target_pixel.y)
 	canvas.draw_on_pixel(target_pixel.x, target_pixel.y, correct_col)
-	painted_pixels.append(target_pixel)
+	painter_resource.painted_pixels.append(target_pixel)
 	target_pixel = get_rand_pixel()
 	target_pos = get_rand_pos(target_pixel)
 	state = State.MOVING

@@ -25,7 +25,7 @@ func number_to_image(number: int) -> Image:
 atlas = ExtResource("4_k4n84")
 region = Rect2(291, 155, 11, 11)
 
-[node name="Canvas" type="TextureRect"]
+[node name="Canvas" type="TextureRect" groups=["canvas"]]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
