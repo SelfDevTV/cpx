@@ -1,4 +1,21 @@
-[gd_scene format=3 uid="uid://8vap2lj7fhrm"]
+[gd_scene load_steps=4 format=3 uid="uid://8vap2lj7fhrm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdswk"]
+bg_color = Color(1, 1, 1, 0.313726)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ivylx"]
+color = Color(0, 0, 0, 0.152941)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_qdswk"]
+color = Color(1, 1, 1, 0.341176)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 4
+vertical = true
 
 [node name="ShopUi" type="Control"]
 layout_mode = 3
@@ -10,44 +27,251 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="GridContainer" type="GridContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -500.0
+offset_top = -247.5
+offset_right = 500.0
+offset_bottom = 247.5
 grow_horizontal = 2
 grow_vertical = 2
-columns = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="GridContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/PanelContainer/MarginContainer"]
+[node name="Global Upgrades" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/Global Upgrades"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qdswk")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GridContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer"]
 layout_mode = 2
-text = "Painter 1"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GridContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Global Upgrades"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ivylx")
+
+[node name="Items" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer/Items"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer/Items/HBoxContainer"]
+layout_mode = 2
+text = "Buy Painter"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer/Items/HBoxContainer"]
+layout_mode = 2
+text = "Buy $4"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer/Items"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer/Items/HBoxContainer2"]
+layout_mode = 2
+text = "Buy Bucket"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer/Items/HBoxContainer2"]
+layout_mode = 2
+text = "Buy $12"
+
+[node name="Seperator" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/HBoxContainer/Seperator"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_qdswk")
+
+[node name="Painters" type="MarginContainer" parent="PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/HBoxContainer/Painters"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qdswk")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Painters"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_ivylx")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="GridContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
 layout_mode = 2
-text = "Speed Upgrade - 2$"
+size_flags_horizontal = 3
 
-[node name="Button2" type="Button" parent="GridContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "CD Upgrade - 4$"
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+text = "Buy Upgrade"
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer11"]
+layout_mode = 2
+text = "Painter 1"
+
+[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer11"]
+layout_mode = 2
+text = "Buy Upgrade"
