@@ -14,7 +14,6 @@ func setup():
 		var iamge_dark = await _generate_text_tile(i + 1, true)
 		number_textures_light.set(i + 1, image_light)
 		number_textures_dark.set(i + 1, iamge_dark)
-	print("finished setup")
 
 
 func _generate_text_tile(num: int, dark: bool = false) -> Image:

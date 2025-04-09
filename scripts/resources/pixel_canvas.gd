@@ -1,6 +1,8 @@
 class_name PixelCanvas
 extends Resource
 
+@export var upgrades: Upgrades
+
 @export var default_color: Color = Color(1, 1, 1, 1)
 
 @export var pixel_size: int
@@ -21,6 +23,7 @@ extends Resource
 signal pixel_drawn()
 
 func create(new_pixel_size: int, new_canvas_size: Vector2i, new_palette: PackedColorArray, new_image: Image) -> PixelCanvas:
+	upgrades = Upgrades.new()
 	pixel_size = new_pixel_size
 	canvas_size = new_canvas_size
 	image = new_image
@@ -45,6 +48,7 @@ func set_pixel_color(x: int, y: int, color: Color) -> void:
 		return
 	if color == get_correct_pixel_color(x, y):
 		amount_correct_colors += 1
+		upgrades.credits += 1
 	else:
 		amount_correct_colors -= 1
 

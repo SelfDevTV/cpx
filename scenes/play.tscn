@@ -32,5 +32,13 @@ autostart = true
 position = Vector2(319, 201)
 canvas = NodePath("../Canvas")
 
+[node name="Painter2" parent="." node_paths=PackedStringArray("canvas") instance=ExtResource("4_hsi3f")]
+position = Vector2(592, 323)
+canvas = NodePath("../Canvas")
+
+[node name="Painter3" parent="." node_paths=PackedStringArray("canvas") instance=ExtResource("4_hsi3f")]
+position = Vector2(464, 360)
+canvas = NodePath("../Canvas")
+
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="SaveInterval" to="." method="_on_save_interval_timeout"]
