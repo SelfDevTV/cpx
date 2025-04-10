@@ -1,15 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvte8tgkkgfss"]
+[gd_scene load_steps=6 format=3 uid="uid://bvte8tgkkgfss"]
 
 [ext_resource type="Script" uid="uid://xhbpkprfaqgk" path="res://scripts/play.gd" id="1_b5e5s"]
 [ext_resource type="PackedScene" uid="uid://f1j0bncyw4p1" path="res://scenes/canvas.tscn" id="3_2jglr"]
 [ext_resource type="PackedScene" uid="uid://cnu4ss3jfkei" path="res://scenes/play_camera.tscn" id="3_yuxfv"]
 [ext_resource type="PackedScene" uid="uid://c3vrurb6jrjaf" path="res://scenes/painter.tscn" id="4_hsi3f"]
+[ext_resource type="PackedScene" uid="uid://8vap2lj7fhrm" path="res://scenes/ui/ShopUI.tscn" id="5_65v2a"]
 
-[node name="Play" type="Node2D"]
+[node name="Play" type="Node2D" node_paths=PackedStringArray("shop_ui")]
+process_mode = 3
 script = ExtResource("1_b5e5s")
 painter_scene = ExtResource("4_hsi3f")
+shop_ui = NodePath("CanvasLayer/ShopUi")
 
 [node name="PlayCamera" parent="." instance=ExtResource("3_yuxfv")]
+process_mode = 1
 position = Vector2(575, 340)
 zoom = Vector2(1.5, 1.5)
 move_speed = 400
@@ -18,20 +22,15 @@ move_speed = 400
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ShopUi" parent="CanvasLayer" instance=ExtResource("5_65v2a")]
+mouse_filter = 0
+
 [node name="Button" type="Button" parent="CanvasLayer"]
 offset_left = 11.0
 offset_top = 50.0
 offset_right = 71.0
 offset_bottom = 74.0
 text = "Save"
-
-[node name="BuyTemp" type="Button" parent="CanvasLayer"]
-unique_name_in_owner = true
-offset_left = 11.0
-offset_top = 95.0
-offset_right = 138.0
-offset_bottom = 119.0
-text = "Add Painter"
 
 [node name="SaveInterval" type="Timer" parent="."]
 wait_time = 10.0
@@ -41,5 +40,4 @@ autostart = true
 position = Vector2(569, 311)
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/BuyTemp" to="." method="_on_button_2_pressed"]
 [connection signal="timeout" from="SaveInterval" to="." method="_on_save_interval_timeout"]

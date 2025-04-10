@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://8vap2lj7fhrm"]
+[gd_scene load_steps=9 format=3 uid="uid://8vap2lj7fhrm"]
+
+[ext_resource type="Script" uid="uid://cfptsqx43222w" path="res://scripts/shop_ui.gd" id="1_ivylx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdswk"]
 bg_color = Color(1, 1, 1, 0.313726)
@@ -17,7 +19,62 @@ grow_end = 0.0
 thickness = 4
 vertical = true
 
+[sub_resource type="Animation" id="Animation_ivylx"]
+resource_name = "move_in"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -625), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1u5rt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -625)]
+}
+
+[sub_resource type="Animation" id="Animation_fwjf0"]
+resource_name = "move_out"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -612)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5pbih"]
+_data = {
+&"RESET": SubResource("Animation_1u5rt"),
+&"move_in": SubResource("Animation_ivylx"),
+&"move_out": SubResource("Animation_fwjf0")
+}
+
 [node name="ShopUi" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,6 +83,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+script = ExtResource("1_ivylx")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -79,7 +139,8 @@ layout_mode = 2
 layout_mode = 2
 text = "Buy Painter"
 
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer/Items/HBoxContainer"]
+[node name="BuyPainter" type="Button" parent="PanelContainer/HBoxContainer/Global Upgrades/PanelContainer/MarginContainer/VBoxContainer/Items/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Buy $4"
 
@@ -275,3 +336,10 @@ text = "Painter 1"
 [node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer11"]
 layout_mode = 2
 text = "Buy Upgrade"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5pbih")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
