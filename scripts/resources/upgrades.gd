@@ -6,7 +6,7 @@ var max_painters: int = 20
 @export var price_painter: int = 10
 @export var price_painter_multiplier: int = 3
 
-@export var credits: int = 0
+@export var credits: int = 10
 @export var painters: Array[PainterResource] = []
 
 signal painter_added(painter_r: PainterResource)

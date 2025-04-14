@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dapbnj3xbmkw"]
+
+[ext_resource type="Script" uid="uid://c526eirad46hi" path="res://scenes/ui/components/btn.gd" id="1_plmu7"]
+
+[node name="Btn" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_plmu7")
+metadata/_edit_use_anchors_ = true

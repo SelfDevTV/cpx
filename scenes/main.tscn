@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1pkymr1cvgy0"]
+[gd_scene load_steps=6 format=3 uid="uid://b1pkymr1cvgy0"]
 
 [ext_resource type="Script" uid="uid://bwkuiu5qoljfs" path="res://scripts/main.gd" id="1_u6bpe"]
+[ext_resource type="PackedScene" uid="uid://dapbnj3xbmkw" path="res://scenes/ui/components/btn.tscn" id="2_0wfyh"]
+[ext_resource type="Script" uid="uid://c526eirad46hi" path="res://scenes/ui/components/btn.gd" id="2_sugp2"]
 
 [sub_resource type="Gradient" id="Gradient_o5qli"]
 colors = PackedColorArray(0, 0.109804, 0, 1, 0.239216, 1, 1, 1)
@@ -12,7 +14,7 @@ fill = 1
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("load_existing_image_btn")]
 script = ExtResource("1_u6bpe")
-load_existing_image_btn = NodePath("CanvasLayer/Control/VBoxContainer/Load Existing Image")
+load_existing_image_btn = NodePath("CanvasLayer/Control/VBoxContainer/Load Existing Image Btn/Load Existing Image")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -41,33 +43,42 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -182.0
-offset_top = -95.5
+offset_top = -95.0
 offset_right = 182.0
-offset_bottom = 95.5
+offset_bottom = 96.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 8
 
-[node name="CreateFromInternet" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="Create Drawing Btn" type="Control" parent="CanvasLayer/Control/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_sugp2")
+metadata/_custom_type_script = "uid://c526eirad46hi"
+
+[node name="CreateFromInternet" type="Button" parent="CanvasLayer/Control/VBoxContainer/Create Drawing Btn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 text = "Create Drawing From Internet
 "
 
-[node name="SendImageToInternet" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
+[node name="Load Existing Image Btn" parent="CanvasLayer/Control/VBoxContainer" instance=ExtResource("2_0wfyh")]
 layout_mode = 2
-size_flags_vertical = 3
-text = "Send Image to Internet and Pixelate"
 
-[node name="CreateDrawing" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-text = "Create Drawing"
-
-[node name="Load Existing Image" type="Button" parent="CanvasLayer/Control/VBoxContainer"]
-layout_mode = 2
+[node name="Load Existing Image" type="Button" parent="CanvasLayer/Control/VBoxContainer/Load Existing Image Btn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 text = "Load existing Image"
 
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/CreateFromInternet" to="." method="_on_create_from_internet_pressed"]
-[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Load Existing Image" to="." method="_on_load_existing_image_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Create Drawing Btn/CreateFromInternet" to="." method="_on_create_from_internet_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/VBoxContainer/Load Existing Image Btn/Load Existing Image" to="." method="_on_load_existing_image_pressed"]

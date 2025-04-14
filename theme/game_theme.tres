@@ -1,47 +1,6 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://bbsdiehruds81"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bbsdiehruds81"]
 
 [ext_resource type="FontFile" uid="uid://di0v0mw3bft3t" path="res://assets/gabs_pixel.ttf" id="2_kanq1"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bsgh5"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0.552941, 0.34902, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 10.0
-expand_margin_top = 5.0
-expand_margin_right = 10.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2j26v"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0.669264, 0.259742, 0.971556, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 10.0
-expand_margin_top = 5.0
-expand_margin_right = 10.0
-expand_margin_bottom = 5.0
-shadow_color = Color(0.122252, 0.122252, 0.122252, 0.6)
-shadow_size = 2
-shadow_offset = Vector2(0, 4)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kanq1"]
 content_margin_left = 8.0
@@ -61,25 +20,6 @@ shadow_color = Color(0.122252, 0.122252, 0.122252, 0.6)
 shadow_size = 2
 shadow_offset = Vector2(0, 4)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3tgcr"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-bg_color = Color(0.552941, 0.34902, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 10.0
-expand_margin_top = 5.0
-expand_margin_right = 10.0
-expand_margin_bottom = 5.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_84gcg"]
 content_margin_left = 10.0
 content_margin_right = 10.0
@@ -93,11 +33,15 @@ corner_radius_bottom_left = 12
 default_font = ExtResource("2_kanq1")
 default_font_size = 22
 Button/colors/font_color = Color(0.164706, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
 Button/fonts/font = ExtResource("2_kanq1")
-Button/styles/focus = SubResource("StyleBoxFlat_bsgh5")
-Button/styles/hover = SubResource("StyleBoxFlat_2j26v")
+Button/styles/focus = SubResource("StyleBoxFlat_kanq1")
+Button/styles/hover = SubResource("StyleBoxFlat_kanq1")
 Button/styles/normal = SubResource("StyleBoxFlat_kanq1")
-Button/styles/pressed = SubResource("StyleBoxFlat_3tgcr")
+Button/styles/pressed = SubResource("StyleBoxFlat_kanq1")
 GridContainer/constants/h_separation = 14
 GridContainer/constants/v_separation = 14
 HBoxContainer/constants/separation = 16

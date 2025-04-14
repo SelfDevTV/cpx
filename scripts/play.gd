@@ -42,3 +42,7 @@ func _on_painter_added(painter_r: PainterResource) -> void:
 	var new_painter = painter_scene.instantiate() as Painter
 	new_painter.painter_resource = painter_r
 	painters.add_child(new_painter)
+
+
+func _on_open_shop_pressed() -> void:
+	shop_ui.toggle()
