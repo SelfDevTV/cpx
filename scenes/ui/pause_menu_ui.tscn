@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1qup57f86ypv"]
+
+[ext_resource type="Script" uid="uid://b60hv4va638y5" path="res://scripts/pause_menu_ui.gd" id="1_jfoc7"]
+[ext_resource type="Shader" uid="uid://ccp7j4roa016w" path="res://assets/shaders/pause_menu_blur.gdshader" id="2_31fmg"]
+[ext_resource type="PackedScene" uid="uid://b1pkymr1cvgy0" path="res://scenes/main.tscn" id="2_bmmqy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmmqy"]
+shader = ExtResource("2_31fmg")
+shader_parameter/blur = 2.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_bmmqy"]
+device = -1
+keycode = 88
+unicode = 120
+
+[sub_resource type="Shortcut" id="Shortcut_8358y"]
+events = [SubResource("InputEventKey_bmmqy")]
+
+[node name="PauseMenuUI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_jfoc7")
+main_scene = ExtResource("2_bmmqy")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+material = SubResource("ShaderMaterial_bmmqy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="UI"]
+layout_mode = 2
+offset_left = 478.0
+offset_top = 262.0
+offset_right = 674.0
+offset_bottom = 386.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Panel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="BackMenu" type="Button" parent="UI/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+text = "<- Back to Menu"
+
+[node name="ExitGame" type="Button" parent="UI/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+shortcut = SubResource("Shortcut_8358y")
+text = "X Exit Game"
+
+[connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/BackMenu" to="." method="_on_back_menu_pressed"]
+[connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/ExitGame" to="." method="_on_exit_game_pressed"]
