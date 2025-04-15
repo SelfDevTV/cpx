@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://8vap2lj7fhrm"]
+[gd_scene load_steps=10 format=3 uid="uid://8vap2lj7fhrm"]
 
 [ext_resource type="Script" uid="uid://cfptsqx43222w" path="res://scripts/shop_ui.gd" id="1_ivylx"]
+[ext_resource type="PackedScene" uid="uid://2m32h5toa3hn" path="res://scenes/ui/painter_upgrade.tscn" id="2_1u5rt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdswk"]
 bg_color = Color(1, 1, 1, 0.313726)
@@ -79,8 +80,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -625.0
-offset_bottom = -625.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -88,6 +87,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
 script = ExtResource("1_ivylx")
+painter_scene = ExtResource("2_1u5rt")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -192,152 +192,11 @@ theme_override_styles/separator = SubResource("StyleBoxLine_ivylx")
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="Painters" type="VBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer7" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer8" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer8"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer8"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer9" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer9"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer9"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer10" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer10"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer10"]
-layout_mode = 2
-text = "Buy Upgrade"
-
-[node name="HBoxContainer11" type="HBoxContainer" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer11"]
-layout_mode = 2
-text = "Painter 1"
-
-[node name="Button" type="Button" parent="PanelContainer/HBoxContainer/Painters/PanelContainer/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer11"]
-layout_mode = 2
-text = "Buy Upgrade"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

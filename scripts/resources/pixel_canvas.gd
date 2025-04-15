@@ -44,7 +44,7 @@ func create(new_pixel_size: int, new_canvas_size: Vector2i, new_palette: PackedC
 	return self
 
 
-func set_pixel_color(x: int, y: int, color: Color) -> void:
+func set_pixel_color(x: int, y: int, color: Color, credits_per_pixel_drawn: int = 0) -> void:
 	if x < 0 or x >= canvas_tiled_size.x or y < 0 or y >= canvas_tiled_size.y:
 		return
 	if color == get_pixel_color(x, y):
@@ -52,7 +52,7 @@ func set_pixel_color(x: int, y: int, color: Color) -> void:
 	if color == get_correct_pixel_color(x, y):
 		amount_correct_colors += 1
 		# TODO: get this from the painter
-		upgrades.credits += 10
+		upgrades.credits += credits_per_pixel_drawn
 	else:
 		amount_correct_colors -= 1
 

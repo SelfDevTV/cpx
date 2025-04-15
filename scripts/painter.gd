@@ -9,12 +9,18 @@ enum State {
 	IDLING
 }
 
+enum PainterUpgrades {
+    SPEED,
+    PAINT_COOLDOWN,
+    CREDITS_PER_PIXEL
+}
+
 var state: State = State.IDLING
 var target_pos: Vector2
 var target_pixel: Vector2i
 
 
-@export var move_speed: float = 100.0
+@export var move_speed_base: float = 50.0
 
 var painter_resource: PainterResource
 var canvas: Canvas
@@ -26,12 +32,17 @@ func _ready() -> void:
 	state = State.MOVING
 	target_pixel = get_rand_pixel()
 	target_pos = get_rand_pos(target_pixel)
-	print("target_pos: ", target_pos)
+	
+
+func setup(painter_r: PainterResource) -> void:
+	painter_resource = painter_r
+	painter_resource.painter_upgraded.connect(_on_painter_upgraded)
+	init_upgrades()
 
 func _process(delta: float) -> void:
 	match state:
 		State.MOVING:
-			var new_pos = global_position.move_toward(target_pos, move_speed * delta)
+			var new_pos = global_position.move_toward(target_pos, move_speed_base * painter_resource.speed * delta)
 			global_position = new_pos
 			if global_position.distance_to(target_pos) == 0:
 				$PaintTimer.start()
@@ -41,6 +52,20 @@ func _process(delta: float) -> void:
 			pass
 		State.IDLING:
 			pass
+
+func _on_painter_upgraded(_painter: PainterResource, upgrade: PainterUpgrades) -> void:
+	apply_upgrade(upgrade)
+
+
+func init_upgrades() -> void:
+	$PaintTimer.wait_time = painter_resource.paint_cooldown
+	
+
+func apply_upgrade(upgrade: PainterUpgrades) -> void:
+	match upgrade:
+		PainterUpgrades.PAINT_COOLDOWN:
+			$PaintTimer.wait_time = painter_resource.paint_cooldown
+		
 
 # if no more pixels left it returns a pixel with -1, -1
 func get_rand_pixel() -> Vector2i:
@@ -69,7 +94,7 @@ func calc_new_painter_objective() -> void:
 func _on_paint_timer_timeout() -> void:
 	# draw the pixel
 	var correct_col = pixel_canvas.get_correct_pixel_color(target_pixel.x, target_pixel.y)
-	canvas.draw_on_pixel(target_pixel.x, target_pixel.y, correct_col)
+	canvas.draw_on_pixel(target_pixel.x, target_pixel.y, correct_col, painter_resource.credits_per_pixel_drawn)
 
 	# get new target pixel
 	calc_new_painter_objective()

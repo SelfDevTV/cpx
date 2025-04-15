@@ -15,10 +15,12 @@ func _process(_delta: float) -> void:
 		shop_ui.toggle()
 
 func _ready() -> void:
-	for painter in Globals.pixel_canvas.upgrades.painters:
+	for painter_r in Globals.pixel_canvas.upgrades.painters:
 		var new_painter = painter_scene.instantiate()
-		new_painter.painter_resource = painter
+
+		
 		painters.add_child(new_painter)
+		new_painter.setup(painter_r)
 		
 	Globals.pixel_canvas.upgrades.painter_added.connect(_on_painter_added)
 
@@ -40,8 +42,9 @@ func _on_save_interval_timeout() -> void:
 func _on_painter_added(painter_r: PainterResource) -> void:
 	print("painter bought")
 	var new_painter = painter_scene.instantiate() as Painter
-	new_painter.painter_resource = painter_r
+	
 	painters.add_child(new_painter)
+	new_painter.setup(painter_r)
 
 
 func _on_open_shop_pressed() -> void:

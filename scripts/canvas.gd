@@ -57,7 +57,7 @@ func mouse_drag(_mouse_pos: Vector2, pixel_x: int, pixel_y: int) -> void:
 			draw_on_pixel(p.x, p.y, current_drawing_color)
 			
 
-func draw_on_pixel(pixel_x, pixel_y, color: Color):
+func draw_on_pixel(pixel_x, pixel_y, color: Color, credits_per_pixel_drawn: int = 0) -> void:
 	# update image
 	for x in range(PIXEL_SIZE):
 		for y in range(PIXEL_SIZE):
@@ -74,7 +74,7 @@ func draw_on_pixel(pixel_x, pixel_y, color: Color):
 			img.blend_rect(NumberTexturesContainer.number_textures_light.get(pixel_num), Rect2i(0, 0, PIXEL_SIZE, PIXEL_SIZE), Vector2i(pixel_x * PIXEL_SIZE, pixel_y * PIXEL_SIZE))
 
 	# update resourec
-	pixel_canvas.set_pixel_color(pixel_x, pixel_y, color)
+	pixel_canvas.set_pixel_color(pixel_x, pixel_y, color, credits_per_pixel_drawn)
 	
 	# update texture
 	tex.update(img)
