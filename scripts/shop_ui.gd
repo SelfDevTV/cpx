@@ -7,6 +7,7 @@ extends Control
 func _ready() -> void:
 	hide()
 	buy_painter_button.pressed.connect(_on_buy_painter_pressed)
+	buy_painter_button.text = "Buy $" + str(Globals.pixel_canvas.upgrades.price_painter)
 
 
 func toggle() -> void:
@@ -33,3 +34,5 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 func _on_buy_painter_pressed() -> void:
 	if not Globals.pixel_canvas.upgrades.buy_painter():
 		print("not enough credits")
+	else:
+		buy_painter_button.text = "Buy $" + str(Globals.pixel_canvas.upgrades.price_painter)

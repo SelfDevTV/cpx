@@ -5,7 +5,7 @@ extends Resource
 @export var speed: float = 1
 @export var better_ki: bool = false
 @export var paint_cooldown: float = 2.0
-@export var credits_per_pixel_drawn = 1
+@export var credits_per_pixel_drawn = 2
 
 var max_painter_speed: float = 10
 var min_painter_cooldown: float = .1
@@ -15,8 +15,6 @@ var max_credits_per_pixel_drawn: int = 20
 @export var paint_cooldown_upgrade: PainterUpgrade = PainterUpgrade.new()
 @export var credits_per_pixel_upgrade: PainterUpgrade = PainterUpgrade.new()
 
-
-@export var painted_pixels: Array[Vector2i]
 
 func create() -> PainterResource:
     speed_upgrade.cost = 1
@@ -28,7 +26,6 @@ func create() -> PainterResource:
     credits_per_pixel_upgrade.cost = 100
     credits_per_pixel_upgrade.cost_multiplier = 5
 
-    painted_pixels = []
     return self
 
 

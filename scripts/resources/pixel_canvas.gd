@@ -18,6 +18,8 @@ extends Resource
 @export var image: Image
 @export var amount_correct_colors: int = 0
 
+@export var painted_pixels: PackedVector2Array
+
 @export var name: String
 
 signal pixel_drawn()
@@ -28,6 +30,7 @@ func create(new_pixel_size: int, new_canvas_size: Vector2i, new_palette: PackedC
 	canvas_size = new_canvas_size
 	image = new_image
 	palette = new_palette
+	painted_pixels = PackedVector2Array()
 
 	pixel_colors = PackedColorArray()
 	palette = new_palette
@@ -48,11 +51,13 @@ func set_pixel_color(x: int, y: int, color: Color) -> void:
 		return
 	if color == get_correct_pixel_color(x, y):
 		amount_correct_colors += 1
-		upgrades.credits += 1
+		# TODO: get this from the painter
+		upgrades.credits += 10
 	else:
 		amount_correct_colors -= 1
 
 	pixel_colors[y * canvas_tiled_size.x + x] = color
+	painted_pixels.append(Vector2i(x, y))
 	emit_signal("pixel_drawn")
 
 func get_pixel_color(x: int, y: int) -> Color:

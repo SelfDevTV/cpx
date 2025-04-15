@@ -13,7 +13,6 @@ var state: State = State.IDLING
 var target_pos: Vector2
 var target_pixel: Vector2i
 
-var painted_pixels: Array[Vector2i] = []
 
 @export var move_speed: float = 100.0
 
@@ -43,19 +42,34 @@ func _process(delta: float) -> void:
 		State.IDLING:
 			pass
 
+# if no more pixels left it returns a pixel with -1, -1
 func get_rand_pixel() -> Vector2i:
+	if pixel_canvas.painted_pixels.size() == pixel_canvas.pixel_colors.size():
+		return Vector2i(-1, -1)
+
+		
 	var px = Vector2i(randi_range(0, pixel_canvas.canvas_tiled_size.x - 1), randi_range(0, pixel_canvas.canvas_tiled_size.y - 1))
-	while painter_resource.painted_pixels.has(px):
+	while pixel_canvas.painted_pixels.has(px):
 		px = Vector2i(randi_range(0, pixel_canvas.canvas_tiled_size.x - 1), randi_range(0, pixel_canvas.canvas_tiled_size.y - 1))
 	return px
 
 func get_rand_pos(pixel: Vector2i) -> Vector2:
 	return canvas.global_position + Vector2(pixel.x * pixel_canvas.pixel_size, pixel.y * pixel_canvas.pixel_size)
 
-func _on_paint_timer_timeout() -> void:
-	var correct_col = pixel_canvas.get_correct_pixel_color(target_pixel.x, target_pixel.y)
-	canvas.draw_on_pixel(target_pixel.x, target_pixel.y, correct_col)
-	painter_resource.painted_pixels.append(target_pixel)
+func calc_new_painter_objective() -> void:
 	target_pixel = get_rand_pixel()
+	if target_pixel == Vector2i(-1, -1):
+		# no more pixels left
+		$PaintTimer.stop()
+		state = State.IDLING
+		return
 	target_pos = get_rand_pos(target_pixel)
 	state = State.MOVING
+
+func _on_paint_timer_timeout() -> void:
+	# draw the pixel
+	var correct_col = pixel_canvas.get_correct_pixel_color(target_pixel.x, target_pixel.y)
+	canvas.draw_on_pixel(target_pixel.x, target_pixel.y, correct_col)
+
+	# get new target pixel
+	calc_new_painter_objective()
