@@ -28,12 +28,13 @@ func buy_painter() -> bool:
 		return false
 	if painters.size() < max_painters:
 		var painter = PainterResource.new().create()
+		painter.painter_upgraded.connect(func(_new_painter: PainterResource, _upgrade: PainterUpgrades): update_bought.emit())
 		painters.append(painter)
 		
 		credits -= price_painter
 		price_painter *= price_painter_multiplier
 		painter_added.emit(painter)
-		painter.painter_upgraded.connect(func(_new_painter: PainterResource, _upgrade: PainterUpgrades): update_bought.emit())
+		
 		return true
 	else:
 		return false

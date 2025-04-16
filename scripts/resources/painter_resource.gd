@@ -39,52 +39,34 @@ func create() -> PainterResource:
 
 
 func upgrade_speed(pixel_canvas: PixelCanvas) -> bool:
-    if pixel_canvas.upgrades.credits > speed_upgrade.cost:
+    if pixel_canvas.upgrades.credits >= speed_upgrade.cost and speed <= max_painter_speed:
         pixel_canvas.upgrades.credits -= speed_upgrade.cost
         speed_upgrade.cost *= speed_upgrade.cost_multiplier
         speed *= 1.5
-
-        if speed > max_painter_speed:
-            speed = max_painter_speed
-            return false
-        
-        else:
-            painter_upgraded.emit(self, PainterUpgrades.SPEED)
-            return true
+        painter_upgraded.emit(self, PainterUpgrades.SPEED)
+        return true
             
     else:
         return false
    
 
 func upgrade_paint_cooldown(pixel_canvas: PixelCanvas) -> bool:
-    if pixel_canvas.upgrades.credits > paint_cooldown_upgrade.cost:
+    if pixel_canvas.upgrades.credits >= paint_cooldown_upgrade.cost and paint_cooldown >= min_painter_cooldown:
         pixel_canvas.upgrades.credits -= paint_cooldown_upgrade.cost
         paint_cooldown_upgrade.cost *= paint_cooldown_upgrade.cost_multiplier
-        paint_cooldown -= .1
-
-        if paint_cooldown < min_painter_cooldown:
-            paint_cooldown = min_painter_cooldown
-            return false
-        
-        else:
-            painter_upgraded.emit(self, PainterUpgrades.PAINT_COOLDOWN)
-            return true
+        paint_cooldown *= .8
+        painter_upgraded.emit(self, PainterUpgrades.PAINT_COOLDOWN)
+        return true
     else:
         return false
 
 func upgrade_credits_per_pixel(pixel_canvas: PixelCanvas) -> bool:
-    if pixel_canvas.upgrades.credits > credits_per_pixel_upgrade.cost:
+    if pixel_canvas.upgrades.credits >= credits_per_pixel_upgrade.cost and credits_per_pixel_drawn <= max_credits_per_pixel_drawn:
         pixel_canvas.upgrades.credits -= credits_per_pixel_upgrade.cost
         credits_per_pixel_upgrade.cost *= credits_per_pixel_upgrade.cost_multiplier
         credits_per_pixel_drawn += 1
-
-        if credits_per_pixel_drawn > max_credits_per_pixel_drawn:
-            credits_per_pixel_drawn = max_credits_per_pixel_drawn
-            return false
-        
-        else:
-            painter_upgraded.emit(self, PainterUpgrades.CREDITS_PER_PIXEL)
-            return true
+        painter_upgraded.emit(self, PainterUpgrades.CREDITS_PER_PIXEL)
+        return true
     else:
         return false
  
