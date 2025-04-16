@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c1jklhqwulyns" path="res://scenes/color_switcher.tscn" id="1_e72ba"]
 
 [node name="DrawingUI" type="CanvasLayer" node_paths=PackedStringArray("pixels_drawn_lbl", "pixels_left_lbl", "progress_bar")]
+process_mode = 3
 script = ExtResource("1_a6gke")
 pixels_drawn_lbl = NodePath("Header/PanelContainer/HBoxContainer/Pixels Drawn Lbl")
 pixels_left_lbl = NodePath("Header/PanelContainer/HBoxContainer/Pixels Left Lbl")

@@ -11,8 +11,10 @@ func save_drawing(drawing: PixelCanvas, drawing_name: String, override: bool = f
 	return true
 
 func load_drawing(drawing_name: String) -> PixelCanvas:
-	var drawing = ResourceLoader.load("user://drawings/" + drawing_name + ".tres", "PixelCanvas", ResourceLoader.CACHE_MODE_IGNORE)
+	var drawing = ResourceLoader.load("user://drawings/" + drawing_name + ".tres", "PixelCanvas", ResourceLoader.CACHE_MODE_IGNORE) as PixelCanvas
+	
 	if drawing == null:
 		print("Error loading drawing: ", drawing_name)
 		return null
+	drawing.upgrades.init_painter_signals()
 	return drawing

@@ -38,9 +38,9 @@ func create() -> PainterResource:
     return self
 
 
-func upgrade_speed(credits: int) -> bool:
-    if credits > speed_upgrade.cost:
-        credits -= speed_upgrade.cost
+func upgrade_speed(pixel_canvas: PixelCanvas) -> bool:
+    if pixel_canvas.upgrades.credits > speed_upgrade.cost:
+        pixel_canvas.upgrades.credits -= speed_upgrade.cost
         speed_upgrade.cost *= speed_upgrade.cost_multiplier
         speed *= 1.5
 
@@ -56,9 +56,9 @@ func upgrade_speed(credits: int) -> bool:
         return false
    
 
-func upgrade_paint_cooldown(credits: int) -> bool:
-    if credits > paint_cooldown_upgrade.cost:
-        credits -= paint_cooldown_upgrade.cost
+func upgrade_paint_cooldown(pixel_canvas: PixelCanvas) -> bool:
+    if pixel_canvas.upgrades.credits > paint_cooldown_upgrade.cost:
+        pixel_canvas.upgrades.credits -= paint_cooldown_upgrade.cost
         paint_cooldown_upgrade.cost *= paint_cooldown_upgrade.cost_multiplier
         paint_cooldown -= .1
 
@@ -72,9 +72,9 @@ func upgrade_paint_cooldown(credits: int) -> bool:
     else:
         return false
 
-func upgrade_credits_per_pixel(credits: int) -> bool:
-    if credits > credits_per_pixel_upgrade.cost:
-        credits -= credits_per_pixel_upgrade.cost
+func upgrade_credits_per_pixel(pixel_canvas: PixelCanvas) -> bool:
+    if pixel_canvas.upgrades.credits > credits_per_pixel_upgrade.cost:
+        pixel_canvas.upgrades.credits -= credits_per_pixel_upgrade.cost
         credits_per_pixel_upgrade.cost *= credits_per_pixel_upgrade.cost_multiplier
         credits_per_pixel_drawn += 1
 

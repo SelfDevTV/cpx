@@ -1,6 +1,11 @@
 class_name Upgrades
 extends Resource
 
+enum PainterUpgrades {
+    SPEED,
+    PAINT_COOLDOWN,
+    CREDITS_PER_PIXEL
+}
 
 var max_painters: int = 20
 @export var price_painter: int = 10
@@ -10,6 +15,13 @@ var max_painters: int = 20
 @export var painters: Array[PainterResource] = []
 
 signal painter_added(painter_r: PainterResource)
+signal update_bought
+
+func init_painter_signals() -> void:
+	# Connect the painter_upgraded signal for each painter
+	for painter in painters:
+		painter.painter_upgraded.connect(func(_new_painter: PainterResource, _upgrade: PainterUpgrades): update_bought.emit())
+
 
 func buy_painter() -> bool:
 	if credits < price_painter:
@@ -21,6 +33,7 @@ func buy_painter() -> bool:
 		credits -= price_painter
 		price_painter *= price_painter_multiplier
 		painter_added.emit(painter)
+		painter.painter_upgraded.connect(func(_new_painter: PainterResource, _upgrade: PainterUpgrades): update_bought.emit())
 		return true
 	else:
 		return false
